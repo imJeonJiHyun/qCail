@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="noticeDAO">
+	<select id="selectAll" resultType="noticeVO">
+		select * from "NOTICE" order by "NOTICE_SEQ" desc
+	</select>
+	<select id="selectDetail" parameterType="Long" resultType="noticeVO">
+		select * from "NOTICE" where "NOTICE_SEQ" = #{noticeSeq}
+	</select>
+	<select id="count" resultType="Integer">
+		select count(*) from "NOTICE"
+	</select>
+	<insert id="insert" parameterType="noticeVO">
+		insert into "NOTICE"
+		(notice_seq, notice_title, notice_content, notice_reg_day, admin_seq) values
+		(n_seq.nextval, #{noticeTitle}, #{noticeContent}, sysdate, #{adminSeq})
+<!-- 		<selectKey keyProperty="num" resultType="Long"> -->
+<!-- 			select nvl(max(num), 0) from "NOTICE"		 -->
+<!-- 		</selectKey> -->
+	</insert>
+	<update id="update" parameterType="noticeVO">
+		update "NOTICE"
+		set notice_title=#{noticeTitle}, notice_content=#{noticeContent}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from "NOTICE" where notice_seq=#{noticeSeq}
+	</delete>
+</mapper>
