@@ -24,8 +24,8 @@ public class ListController {
 	@RequestMapping(value="/notice/list", method=RequestMethod.GET)
 	public String showList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		Long admin = (long) 1;
-		String adminNick = "오가은";
+		Long admin = (long) 1; //db에서 값을 가져오지 않고 임의로 값을 넣어서 테스트 중이였음
+		String adminNick = "오가은";  //근데 실패함, 글쓰기 버튼은 뜨는데 닉네임이 뜨지 않음
 		session.setAttribute("adminSeq", admin);
 		session.setAttribute("adminNickname", adminNick);
 		
