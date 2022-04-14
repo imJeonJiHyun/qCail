@@ -21,9 +21,14 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void inserWrite(WriteCommand writeCommand) {
+	public void insertWrite(WriteCommand writeCommand) {
 		ReplyVO newReply = new ReplyVO();
+		//newReply.setReplySeq(writeCommand.getReplySeq());
+		newReply.setBoardSeq(writeCommand.getBoardSeq());
+		newReply.setMemberSeq(writeCommand.getMemberSeq());
 		newReply.setReplyContent(writeCommand.getReplyContent());
-		replyDAO.replyInsert(newReply);	
+		
+		System.out.println("댓글 서비스 클래스 insert \n" + newReply);
+		replyDAO.replyInsert(newReply);
 	}
 }

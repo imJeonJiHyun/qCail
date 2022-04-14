@@ -10,15 +10,15 @@
 		select count(*) from "REPLY"
 	</select>
 	
-	<insert id="insert" parameterType="replyVO">
-		insert into "REPLY" 
+	<insert id="replyinsert" parameterType="replyVO">
+		insert into "REPLY" (reply_SEQ, BOARD_SEQ, MEMBER_SEQ, reply_CONTENT, reply_REG_DAY) 
 		values (reply_SEQ.nextval, #{boardSeq}, #{memberSeq}, #{replyContent}, sysdate)
 	</insert>
-	<update id="update" parameterType="replyVO">
+	<update id="replyupdate" parameterType="replyVO">
 		update "REPLY" 
 		set reply_CONTENT = #{replyContent} where reply_seq = #{replySeq}
 	</update>
-	<delete id="delete" parameterType="Long">
+	<delete id="replydelete" parameterType="Long">
 		delete from "REPLY" where reply_SEQ=#{replySeq}
 	</delete>
 </mapper>

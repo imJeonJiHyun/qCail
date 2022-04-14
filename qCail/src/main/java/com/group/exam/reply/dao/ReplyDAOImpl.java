@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.group.exam.reply.vo.ReplyVO;
-
+@Repository
 public class ReplyDAOImpl implements ReplyDAO {
 	
 	@Autowired
@@ -28,16 +29,16 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	@Override
 	public void replyInsert(ReplyVO replyVO) {
-		sqlSessionTemplate.insert("insert", replyVO);	
+		sqlSessionTemplate.insert("replyinsert", replyVO);	
 	}
 
 	@Override
 	public void replyUpdate(ReplyVO replyVO) {
-		sqlSessionTemplate.update("update", replyVO);
+		sqlSessionTemplate.update("replyupdate", replyVO);
 	}
 
 	@Override
 	public void replyDelete(Long replySeq) {
-		sqlSessionTemplate.delete("delete", replySeq);
+		sqlSessionTemplate.delete("replydelete", replySeq);
 	}
 }

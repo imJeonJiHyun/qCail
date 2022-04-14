@@ -10,5 +10,6 @@
 	</settings>
 	<typeAliases>
 		<typeAlias alias="noticeVO" type="com.group.exam.notice.vo.NoticeVO"/>
+		<typeAlias alias="replyVO" type="com.group.exam.reply.vo.ReplyVO"/>
 	</typeAliases>
 </configuration>

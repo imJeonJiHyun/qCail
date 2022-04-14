@@ -7,6 +7,7 @@ public class ReplyVO {
 	private Long boardSeq;
 	private Long memberSeq;
 	private String replyContent;
+	private String memberNickname;
 	private Date replyRegDay;
 	
 	public Long getReplySeq() {
@@ -39,4 +40,21 @@ public class ReplyVO {
 	public void setReplyRegDay(Date replyRegDay) {
 		this.replyRegDay = replyRegDay;
 	}
+	public String getMemberNickname() {
+		return memberNickname;
+	}
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
+	}
+	@Override
+	public String toString() {
+		return "ReplyVO [replySeq=" + replySeq + ", boardSeq=" + boardSeq + ", memberSeq=" + memberSeq
+				+ ", replyContent=" + replyContent + ", memberNickname=" + memberNickname + ", replyRegDay="
+				+ replyRegDay + "]";
+	}
+	
+	
+	
+	
+	
 }

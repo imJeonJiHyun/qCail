@@ -9,5 +9,5 @@ import com.group.exam.reply.vo.ReplyVO;
 
 public interface ReplyService {
 	public List<ReplyVO> showReply();
-	public void inserWrite(WriteCommand writeCommand);
+	public void insertWrite(WriteCommand writeCommand);
 }
