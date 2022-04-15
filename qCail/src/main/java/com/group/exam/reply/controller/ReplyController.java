@@ -20,15 +20,23 @@ public class ReplyController {
 	private ReplyService replyService;
 	
 	@RequestMapping(value="/reply", method=RequestMethod.GET)
-	public String showReply(WriteCommand writeCommand, Model model) {
-		List<ReplyVO> replyList = replyService.showReply();
-		model.addAttribute("replyList", replyList);
+	public String replySelect(WriteCommand writeCommand, Model model) {
+		List<ReplyVO> replySelect = replyService.replySelect();
+		model.addAttribute("replySelect", replySelect);
 		return "reply_list_form";
 	}
 	
 	@RequestMapping(value="/reply", method=RequestMethod.POST)
-	public String insertWrite(@ModelAttribute("writeForm") WriteCommand writeCommand) {
-		replyService.insertWrite(writeCommand);
+	public String replyInsert(@ModelAttribute("writeForm") WriteCommand writeCommand) {
+		replyService.replyInsert(writeCommand);
 		return "redirect:/reply";
 	}
+	
+	@RequestMapping(value="/reply/update", method=RequestMethod.GET)
+	public String replyUpdate(WriteCommand writeCommand, Model model) {
+		model.addAttribute("replyUpdate", replyUpdate);
+		return "reply_update_form";
+	}
+	
+	
 }

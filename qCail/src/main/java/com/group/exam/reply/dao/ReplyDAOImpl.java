@@ -19,26 +19,26 @@ public class ReplyDAOImpl implements ReplyDAO {
 	
 	@Override
 	public List<ReplyVO> replySelect() {
-		return sqlSessionTemplate.selectList("select");
+		return sqlSessionTemplate.selectList("replySelect");
 	}
 	
 	@Override
 	public int replyCount() {
-		return sqlSessionTemplate.selectOne("count");
+		return sqlSessionTemplate.selectOne("replyCount");
 	}
 
 	@Override
 	public void replyInsert(ReplyVO replyVO) {
-		sqlSessionTemplate.insert("replyinsert", replyVO);	
+		sqlSessionTemplate.insert("replyInsert", replyVO);	
 	}
 
 	@Override
 	public void replyUpdate(ReplyVO replyVO) {
-		sqlSessionTemplate.update("replyupdate", replyVO);
+		sqlSessionTemplate.update("replyUpdate", replyVO);
 	}
 
 	@Override
-	public void replyDelete(Long replySeq) {
-		sqlSessionTemplate.delete("replydelete", replySeq);
+	public void replyDelete(ReplyVO replyVO) {
+		sqlSessionTemplate.delete("replyDelete", replyVO);
 	}
 }

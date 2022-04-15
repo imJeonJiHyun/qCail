@@ -8,6 +8,8 @@ import com.group.exam.reply.vo.ReplyVO;
 
 
 public interface ReplyService {
-	public List<ReplyVO> showReply();
-	public void insertWrite(WriteCommand writeCommand);
+	public List<ReplyVO> replySelect();
+	public void replyInsert(WriteCommand writeCommand);
+	public void replyUpdate(WriteCommand writeCommand);
+	public void replyDelete(WriteCommand writeCommand);
 }
