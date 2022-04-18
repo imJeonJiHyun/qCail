@@ -11,5 +11,5 @@ public interface ReplyService {
 	public List<ReplyVO> replySelect();
 	public void replyInsert(WriteCommand writeCommand);
 	public void replyUpdate(WriteCommand writeCommand);
-	public void replyDelete(WriteCommand writeCommand);
+	public void replyDelete(Long replySeq);
 }

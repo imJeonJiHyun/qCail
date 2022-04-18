@@ -32,11 +32,9 @@ public class ReplyController {
 		return "redirect:/reply";
 	}
 	
-	@RequestMapping(value="/reply/update", method=RequestMethod.GET)
-	public String replyUpdate(WriteCommand writeCommand, Model model) {
-		model.addAttribute("replyUpdate", replyUpdate);
-		return "reply_update_form";
-	}
-	
-	
+//	@RequestMapping(value="/reply/update", method=RequestMethod.GET)
+//	public String replyUpdate(WriteCommand writeCommand, Model model) {
+//		model.addAttribute("replyUpdate", re)
+//		return "reply_update_form";
+//	} 수정 컨트롤러
 }

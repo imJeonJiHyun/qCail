@@ -8,53 +8,126 @@
 <head>
 <meta charset="UTF-8">
 <title>댓글 임시</title>
-<script type="text/javascript"> //아직 열심히 수정 만지는 중
-//데이터 전송 객체 생성!
-var comment = {
-  // 이벤트 등록
-  init: function() {
-    var _this = this;
-    
-   // 수정 버튼 변수화
-   const updateBtns = document.querySelectorAll('.comment-update-btn');
-   // 모든 수정 버튼별, 이벤트 등록
-    updateBtns.forEach(function(item) {
-      item.addEventListener('click', function() { // 클릭 이벤트 발생시,
-        var form = this.closest('form'); // 클릭 이벤트가 발생한 버튼에 제일 가까운 폼을 찾고,
-        _this.update(form); // 해당 폼으로, 업데이트 수행한다!
-      });
-    });
-  },
-//댓글 수정
-update: function(form) {
-  // 데이터
-  var data = {
-    id: form.querySelector('#comment-id').value,
-    author: form.querySelector('#comment-author').value,
-    content: form.querySelector('#comment-content').value,
-  };
-  // url에서 article의 id를 추출!
-  var split = location.pathname.split('/');
-  var articleId = split[split.length - 1];
-  // 비동기 통신
-  fetch('/api/comments/' + data.id, { // 요청을 보냄
-    method: 'PUT',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(function(response) { // 응답 처리
-    if (response.ok) { // 성공
-      alert('댓글이 수정되었습니다.');
-    } else { // 실패
-      alert('댓글 수정 실패..!');
-    }
-    window.location.reload(true); // 페이지 리로드
-  });
+<script>
+function showReplyList(){
+
+	var url = "${pageContext.request.contextPath}/restReply/reply";
+
+	var paramData = {"bid" : "${boardContent.bid}"};
+
+	$.ajax({
+
+        type: 'POST',
+
+        url: url,
+
+        data: paramData,
+
+        dataType: 'json',
+
+        success: function(result) {
+
+           	var htmls = "";
+
+		if(result.length < 1){
+
+			htmls.push("등록된 댓글이 없습니다.");
+
+		} else {
+
+                    $(result).each(function(){
+
+                     htmls += '<div class="media text-muted pt-3" id="rid' + this.rid + '">';
+
+                     htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
+
+                     htmls += '<title>Placeholder</title>';
+
+                     htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
+
+                     htmls += '<text x="50%" fill="#007bff" dy=".3em">32x32</text>';
+
+                     htmls += '</svg>';
+
+                     htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+
+                     htmls += '<span class="d-block">';
+
+                     htmls += '<strong class="text-gray-dark">' + this.reg_id + '</strong>';
+
+                     htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+
+                     htmls += '<a href="javascript:void(0)" onclick="fn_editReply(' + this.rid + ', \'' + this.reg_id + '\', \'' + this.content + '\' )" style="padding-right:5px">수정</a>';
+
+                     htmls += '<a href="javascript:void(0)" onclick="fn_deleteReply(' + this.rid + ')" >삭제</a>';
+
+                     htmls += '</span>';
+
+                     htmls += '</span>';
+
+                     htmls += this.content;
+
+                     htmls += '</p>';
+
+                     htmls += '</div>';
+                });	//each end
+		}
+		$("#replyList").html(htmls);
+        }	   // Ajax success end
+	});	// Ajax end
 }
-};
-//객체 초기화!
-comment.init();
+
+function replyUpdate()(rid, reg_id, content){
+
+	var htmls = "";
+
+	htmls += '<div class="media text-muted pt-3" id="rid' + rid + '">';
+
+	htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
+
+	htmls += '<title>Placeholder</title>';
+
+	htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
+
+	htmls += '<text x="50%" fill="#007bff" dy=".3em">32x32</text>';
+
+	htmls += '</svg>';
+
+	htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+
+	htmls += '<span class="d-block">';
+
+	htmls += '<strong class="text-gray-dark">' + reg_id + '</strong>';
+
+	htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+
+	htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + rid + ', \'' + reg_id + '\')" style="padding-right:5px">저장</a>';
+
+	htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';
+
+	htmls += '</span>';
+
+	htmls += '</span>';		
+
+	htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
+
+	htmls += content;
+
+	htmls += '</textarea>';
+
+	
+
+	htmls += '</p>';
+
+	htmls += '</div>';
+
+	
+
+	$('#rid' + rid).replaceWith(htmls);
+
+	$('#rid' + rid + ' #editContent').focus();
+
+}
 </script>
 </head>
 <body>
@@ -93,7 +166,7 @@ comment.init();
 					<td><a href="<c:url value="/notice/read/${replySelect.boardSeq}"/>">${replySelect.replyContent}</a></td>
 					<td>${replySelect.replyRegDay}</td>
 					<c:if test="${replySelect.memberSeq != null}"> <!-- 세션 사용? 으로 교체 -->
-					<td><button type="button" class="replyUpdateBtn" data-replySeq="${replySelect.replySeq}">수정</button></td>
+					<td><button type="button" onclick = "replyUpdate()" class="replyUpdateBtn" data-replySeq="${replySelect.replySeq}">수정</button></td>
 					<td><button type="button" class="replyDelete" data-replySeq="${replySelect.replySeq}">삭제</button></td>
 					</c:if>
 				</tr>

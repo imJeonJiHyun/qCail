@@ -10,5 +10,5 @@ public interface ReplyDAO {
 	public int replyCount();
 	public void replyInsert(ReplyVO replyVO);
 	public void replyUpdate(ReplyVO replyVO);
-	public void replyDelete(ReplyVO replyVO);
+	public void replyDelete(Long replySeq);
 }

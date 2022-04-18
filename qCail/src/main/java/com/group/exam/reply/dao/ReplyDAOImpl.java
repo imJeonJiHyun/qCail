@@ -38,7 +38,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
-	public void replyDelete(ReplyVO replyVO) {
-		sqlSessionTemplate.delete("replyDelete", replyVO);
+	public void replyDelete(Long replySeq) {
+		sqlSessionTemplate.delete("replyDelete", replySeq);
 	}
 }

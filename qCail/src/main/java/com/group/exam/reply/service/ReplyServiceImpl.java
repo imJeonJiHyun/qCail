@@ -45,14 +45,14 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void replyDelete(WriteCommand writeCommand) {
-		ReplyVO replyDelete = new ReplyVO();
-		replyDelete.setReplySeq(writeCommand.getReplySeq());
+	public void replyDelete(Long replySeq) {
+		//ReplyVO replyDelete = new ReplyVO();
+		//replyDelete.setReplySeq(replyDelete.getReplySeq());
 		//replyDelete.setBoardSeq(writeCommand.getBoardSeq());
 		//replyDelete.setMemberSeq(writeCommand.getMemberSeq());
 		//replyDelete.setReplyContent(writeCommand.getReplyContent());
 		
-		System.out.println("댓글 서비스 클래스 update \n" + replyDelete);
-		replyDAO.replyDelete(replyDelete);
+		//System.out.println("댓글 서비스 클래스 update \n" + replyDelete);
+		replyDAO.replyDelete(replySeq);
 	}
 }
