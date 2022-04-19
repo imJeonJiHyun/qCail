@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.group.exam.notice.vo.NoticeVO;
+import com.group.exam.reply.vo.ReplyVO;
 
 @Repository
 public class NoticeDAOImpl implements NoticeDAO {
@@ -24,8 +25,8 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 	
 	@Override
-	public NoticeVO selectDetail(Long noticeSeq) {
-		return sqlSessionTemplate.selectOne("selectDetail", noticeSeq);
+	public NoticeVO selectDetail(Integer boardSeq) {
+		return sqlSessionTemplate.selectOne("selectDetail", boardSeq);
 	}
 
 	@Override
@@ -44,7 +45,33 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public void delete(Long noticeSeq) {
-		sqlSessionTemplate.delete("delete", noticeSeq);
+	public void delete(Integer boardSeq) {
+		sqlSessionTemplate.delete("delete", boardSeq);
+	}
+
+	//댓글
+	@Override
+	public List<ReplyVO> replySelect(Integer boardSeq) {
+		return sqlSessionTemplate.selectList("replySelect", boardSeq);
+	}
+	
+	@Override
+	public int replyCount() {
+		return sqlSessionTemplate.selectOne("replyCount");
+	}
+
+	@Override
+	public void replyInsert(ReplyVO replyVO) {
+		sqlSessionTemplate.insert("replyInsert", replyVO);	
+	}
+
+	@Override
+	public void replyUpdate(ReplyVO replyVO) {
+		sqlSessionTemplate.update("replyUpdate", replyVO);
+	}
+
+	@Override
+	public void replyDelete(Integer replySeq) {
+		sqlSessionTemplate.delete("replyDelete", replySeq);
 	}
 }

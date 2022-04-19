@@ -45,7 +45,7 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void replyDelete(Long replySeq) {
+	public void replyDelete(Integer replySeq) {
 		//ReplyVO replyDelete = new ReplyVO();
 		//replyDelete.setReplySeq(replyDelete.getReplySeq());
 		//replyDelete.setBoardSeq(writeCommand.getBoardSeq());

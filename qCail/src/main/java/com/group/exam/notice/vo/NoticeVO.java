@@ -3,18 +3,18 @@ package com.group.exam.notice.vo;
 import java.sql.Date;
 
 public class NoticeVO {
-	private Long noticeSeq;
+	private Integer boardSeq;
 	private String noticeTitle;
 	private String noticeContent;
 	private Date noticeRegDay;
 	private static Long adminSeq;
 	private static String adminNickname;
-	//db랑 이름 맞춰주기
-	public Long getNoticeSeq() {
-		return noticeSeq;
+	
+	public Integer getBoardSeq() {
+		return boardSeq;
 	}
-	public void setNoticeSeq(Long noticeSeq) {
-		this.noticeSeq = noticeSeq;
+	public void setBoardSeq(Integer boardSeq) {
+		this.boardSeq = boardSeq;
 	}
 	public String getNoticeTitle() {
 		return noticeTitle;
@@ -37,13 +37,14 @@ public class NoticeVO {
 	public static Long getAdminSeq() {
 		return adminSeq;
 	}
-	public void setAdminSeq(Long adminSeq) {
-		this.adminSeq = adminSeq;
+	public static void setAdminSeq(Long adminSeq) {
+		NoticeVO.adminSeq = adminSeq;
 	}
 	public static String getAdminNickname() {
 		return adminNickname;
 	}
-	public void setAdminNickname(String adminNickname) {
-		this.adminNickname = adminNickname;
+	public static void setAdminNickname(String adminNickname) {
+		NoticeVO.adminNickname = adminNickname;
 	}
+	
 }

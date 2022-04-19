@@ -1,5 +1,7 @@
 package com.group.exam.notice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.group.exam.notice.exception.DetailNotFoundException;
 import com.group.exam.notice.service.NoticeService;
 import com.group.exam.notice.vo.NoticeVO;
+import com.group.exam.reply.vo.ReplyVO;
 
 @Controller
 public class DetailController {
@@ -19,15 +22,17 @@ public class DetailController {
 	private NoticeService detailService;
 	
 	
-	@RequestMapping("/notice/read/{noticeSeq}")
-	public String noticeDetail(Model model, @PathVariable("noticeSeq") Long noticeSeq) {
-		NoticeVO noticeDetail = detailService.showDetail(noticeSeq);
+	@RequestMapping("/notice/read/{boardSeq}")
+	public String noticeDetail(Model model, @PathVariable("boardSeq") Integer boardSeq) {
+		NoticeVO noticeDetail = detailService.showDetail(boardSeq);
+		List<ReplyVO> replySelect = detailService.replySelect(boardSeq);
 		
 		if(noticeDetail == null) {
 			throw new DetailNotFoundException();
 		}
 
 		model.addAttribute("noticeDetail", noticeDetail);
+		model.addAttribute("replySelect", replySelect);
 		return "notice_detail_form";
 	}
 	

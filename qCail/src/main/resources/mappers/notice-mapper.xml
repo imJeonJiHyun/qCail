@@ -7,7 +7,7 @@
 		select * from "NOTICE" order by "NOTICE_SEQ" desc
 	</select>
 	<select id="selectDetail" parameterType="Long" resultType="noticeVO">
-		select * from "NOTICE" where "NOTICE_SEQ" = #{noticeSeq}
+		select * from "NOTICE" where "NOTICE_SEQ" = #{boardSeq}
 	</select>
 	<select id="count" resultType="Integer">
 		select count(*) from "NOTICE"
@@ -25,6 +25,6 @@
 		set notice_title=#{noticeTitle}, notice_content=#{noticeContent}
 	</update>
 	<delete id="delete" parameterType="Long">
-		delete from "NOTICE" where notice_seq=#{noticeSeq}
+		delete from "NOTICE" where notice_seq=#{boardSeq}
 	</delete>
 </mapper>

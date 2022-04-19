@@ -1,27 +1,27 @@
 package com.group.exam.reply.command;
 
 public class WriteCommand {
-	private Long replySeq;
-	private Long boardSeq;
-	private Long memberSeq;
+	private Integer replySeq;
+	private Integer boardSeq;
+	private Integer memberSeq;
 	private String replyContent;
 	
-	public Long getReplySeq() {
+	public Integer getReplySeq() {
 		return replySeq;
 	}
-	public void setReplySeq(Long replySeq) {
+	public void setReplySeq(Integer replySeq) {
 		this.replySeq = replySeq;
 	}
-	public Long getBoardSeq() {
+	public Integer getBoardSeq() {
 		return boardSeq;
 	}
-	public void setBoardSeq(Long boardSeq) {
+	public void setBoardSeq(Integer boardSeq) {
 		this.boardSeq = boardSeq;
 	}
-	public Long getMemberSeq() {
+	public Integer getMemberSeq() {
 		return memberSeq;
 	}
-	public void setMemberSeq(Long memberSeq) {
+	public void setMemberSeq(Integer memberSeq) {
 		this.memberSeq = memberSeq;
 	}
 	public String getReplyContent() {
@@ -29,5 +29,5 @@ public class WriteCommand {
 	}
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
-	}
+	}	
 }

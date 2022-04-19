@@ -21,8 +21,8 @@
 				</tr>
 		<c:forEach var ="noticeList" items="${noticeList}" varStatus="loop">
 				<tr>
-					<td>${noticeList.noticeSeq}</td>
-					<td><a href="<c:url value="/notice/read/${noticeList.noticeSeq}"/>">${noticeList.noticeTitle}</a></td>
+					<td>${noticeList.boardSeq}</td>
+					<td><a href="<c:url value="/notice/read/${noticeList.boardSeq}"/>">${noticeList.noticeTitle}</a></td>
 					<td>${noticeList.noticeRegDay}</td>
 				</tr>
 		</c:forEach>

@@ -1,14 +1,10 @@
-package com.group.exam.reply.vo;
+package com.group.exam.notice.command;
 
-import java.sql.Date;
-
-public class ReplyVO {
+public class ReplyCommand {
 	private Integer replySeq;
 	private Integer boardSeq;
 	private Integer memberSeq;
 	private String replyContent;
-	private String memberNickname;
-	private Date replyRegDay;
 	
 	public Integer getReplySeq() {
 		return replySeq;
@@ -33,17 +29,5 @@ public class ReplyVO {
 	}
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
-	}
-	public String getMemberNickname() {
-		return memberNickname;
-	}
-	public void setMemberNickname(String memberNickname) {
-		this.memberNickname = memberNickname;
-	}
-	public Date getReplyRegDay() {
-		return replyRegDay;
-	}
-	public void setReplyRegDay(Date replyRegDay) {
-		this.replyRegDay = replyRegDay;
 	}
 }
