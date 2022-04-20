@@ -3,22 +3,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="replyDAO">
-	<select id="replySelect" resultType="replyVO">
+	<select id="selectReply" resultType="replyVO">
 		select * from reply A, member B where A.member_seq = B.member_seq and BOARD_SEQ = #{boardSeq};
 	</select>
-	<select id="replyCount" resultType="Integer">
+	<select id="countReply" resultType="Integer">
 		select count(*) from "REPLY"
 	</select>
 	
-	<insert id="replyInsert" parameterType="replyVO">
+	<insert id="insertReply" parameterType="replyVO">
 		insert into "REPLY" (reply_SEQ, BOARD_SEQ, MEMBER_SEQ, reply_CONTENT, reply_REG_DAY) 
 		values (reply_SEQ.nextval, #{boardSeq}, #{memberSeq}, #{replyContent}, sysdate)
 	</insert>
-	<update id="replyUpdate" parameterType="replyVO">
+	<update id="updateReply" parameterType="replyVO">
 		update "REPLY" 
 		set reply_CONTENT = #{replyContent} where reply_seq = #{replySeq}
 	</update>
-	<delete id="replyDelete" parameterType="Integer">
+	<delete id="deleteReply" parameterType="Integer">
 		delete from "REPLY" where reply_SEQ=#{replySeq}
 	</delete>
 </mapper>
